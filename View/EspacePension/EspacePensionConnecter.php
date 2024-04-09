@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="../../style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" type="image/x-icon" href="../../res/logo.png">
+        
     </head>
     <body>
         <section id="menuEspaceClient">
@@ -26,13 +27,9 @@
                                 ?>
                             </a></li>
                             <br><br>
-                            <li><a href="espaceClient.php" style="color:#209d1e">Accueil</a><li><br>
-                            <li><a href="../../informations_pension.php">Pension</a></li><br><br>
-                            <li><a href="liste_animaux.php">Liste des animaux</a></li><br><br>
-                            <li><a href="historique.php">Historique</a></li><br><br>
-                            <li><a href="../EspaceClient/AjouterUnProprietaire.php">Réservation</a></li><br><br>
-                            <li><a href="../EspaceClient/parametres.php">Tarifs</a></li><br><br>
-                            <li><a href="../EspaceClient/securite.php">Sécurité et Confidentialité</a></li><br><br>
+                            <li><a href="EspacePensionConnecter.php" style="color:#209d1e">Accueil</a><li><br>
+                            <li><a href="informations_pension.php">Pension</a></li><br><br>
+                            <li><a href="GestionBox.php">Box</a></li><br><br>
                             <li><a href="deconecter.php">Se déconecter</a></li>
                         </ul>
                     </div>
