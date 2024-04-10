@@ -1,3 +1,7 @@
+<?php 
+include_once(__DIR__ . "/../../Modele/ScriptBox.php");
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -44,7 +48,6 @@
                                     include_once(__DIR__ . "/../../Modele/ScriptEspacePension.php");
                                     include_once(realpath(__DIR__ . '/../../Controller/Connect.php'));
 
-                                    session_start();
                                     $ScriptEspacePension = new ScriptEspacePension();
 
                                     echo $ScriptEspacePension->getNomPension();
@@ -58,21 +61,42 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="espaceClient-1">
-            <form>
-            <h1>Gestion Des Box</h1><hr>
-            <label for="typeGardiennage">Type Gardiennage:</label>
-            <select id="typeGardiennage">
-                <option value="option1">Hotel Cânin</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select><br>
-            <a style="margin-top:10px">Tarifs par jours (€): </a><input type="text" value=""></input>
-            <a style="margin-top:10px">Superficie Box (m²): </a><input type="text" value=""></input>
-            <input type="submit" id='update' value='Modifier'>
-            </form>
-        </section>
-        <script src="script.js"></script>
-    </body>
+            </section>
+<section class="espaceClient-1">
+    <form action="../../Controller/Ajoutbox.php" method="POST" id="boxForm">
+        <h1>Gestion Des Box</h1>
+        <hr>
+        <label for="typeGardiennage">Type Gardiennage:</label>
+        <select id="typeGardiennage" name="typeGardiennage">
+            <?php
+            include_once("../../Model/ScriptBox.php");
+
+            $scriptBox = new ScriptBox();
+            $typesBox = $scriptBox->getTypesBoxWithTarifSuperficie();
+
+            foreach ($typesBox as $type) {
+                echo "<option value='" . $type['id'] . "' data-tarif='" . $type['tarif'] . "' data-superficie='" . $type['superficie'] . "'>" . $type['libelle'] . "</option>";
+            }
+            ?>
+        </select><br>
+        <label for="tarifs">Tarifs par jour (€):</label>
+        <input type="text" name="tarifs" id="tarifs" ><br>
+        <label for="superficie">Superficie Box (m²):</label>
+        <input type="text" name="superficie" id="superficie" ><br>
+        <input type="hidden" name="idTypeGardiennage" id="idTypeGardiennage">
+        <input type="submit" id="update" value="Modifier">
+    </form>
+</section>
+<script>
+    document.getElementById('typeGardiennage').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var tarif = selectedOption.getAttribute('data-tarif');
+        var superficie = selectedOption.getAttribute('data-superficie');
+        var idTypeGardiennage = selectedOption.value;
+        document.getElementById('tarifs').value = tarif;
+        document.getElementById('superficie').value = superficie;  
+        document.getElementById('idTypeGardiennage').value = idTypeGardiennage;      
+    });
+</script>
+</body>
 </html>
